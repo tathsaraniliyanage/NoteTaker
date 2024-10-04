@@ -1,6 +1,9 @@
 package lk.ijse.gdse.notetaker.controller;
 
+import lk.ijse.gdse.notetaker.customObj.NoteResponse;
 import lk.ijse.gdse.notetaker.dto.NoteDTO;
+import lk.ijse.gdse.notetaker.exception.DataPersistFailedException;
+import lk.ijse.gdse.notetaker.exception.NoteNotFound;
 import lk.ijse.gdse.notetaker.service.NoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
