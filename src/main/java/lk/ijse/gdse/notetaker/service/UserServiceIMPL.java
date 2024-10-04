@@ -8,6 +8,9 @@ import lk.ijse.gdse.notetaker.dao.NoteDao;
 import lk.ijse.gdse.notetaker.dao.UserDao;
 import lk.ijse.gdse.notetaker.dto.NoteDTO;
 import lk.ijse.gdse.notetaker.dto.UserDTO;
+import lk.ijse.gdse.notetaker.entity.UserEntity;
+import lk.ijse.gdse.notetaker.exception.DataPersistFailedException;
+import lk.ijse.gdse.notetaker.util.AppUtil;
 import lk.ijse.gdse.notetaker.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +35,12 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public void saveUser(UserDTO userDTO) {
-
+        userDTO.setUserId(AppUtil.createUserId());
+        UserEntity savedUser =
+                userDao.save(mapping.convertToUserEntity(userDTO));
+        if(savedUser == null ) {
+            throw new DataPersistFailedException("Cannot data saved");
+        }
     }
 
     @Override
