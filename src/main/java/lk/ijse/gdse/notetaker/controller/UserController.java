@@ -3,6 +3,7 @@ package lk.ijse.gdse.notetaker.controller;
 import lk.ijse.gdse.notetaker.customObj.UserResponse;
 import lk.ijse.gdse.notetaker.dto.UserDTO;
 import lk.ijse.gdse.notetaker.exception.DataPersistFailedException;
+import lk.ijse.gdse.notetaker.exception.UserNotFoundException;
 import lk.ijse.gdse.notetaker.service.UserServiceIMPL;
 import lk.ijse.gdse.notetaker.util.AppUtil;
 import lombok.RequiredArgsConstructor;
@@ -107,7 +108,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO getSelectedUser(@PathVariable ("id") String userId){
+    public UserResponse getSelectedUser(@PathVariable ("id") String userId){
         return userService.getSelectedUser(userId);
     }
 }
