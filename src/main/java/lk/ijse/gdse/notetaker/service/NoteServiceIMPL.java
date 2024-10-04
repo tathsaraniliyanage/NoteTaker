@@ -1,5 +1,6 @@
 package lk.ijse.gdse.notetaker.service;
 
+import jakarta.transaction.Transactional;
 import lk.ijse.gdse.notetaker.dto.NoteDto;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,12 @@ import org.springframework.stereotype.Service;
  * @project notetaker
  **/
 
+@Service
+@Transactional
+public class NoteServiceIMPL implements NoteService{
 
-public interface NoteService {
-    void saveNote(NoteDto noteDto);
+    @Override
+    public void saveNote(NoteDto noteDto) {
+
+    }
 }
