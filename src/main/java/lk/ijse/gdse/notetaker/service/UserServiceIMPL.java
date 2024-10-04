@@ -3,6 +3,7 @@ package lk.ijse.gdse.notetaker.service;
 import jakarta.transaction.Transactional;
 import lk.ijse.gdse.notetaker.customObj.NoteErrorResponse;
 import lk.ijse.gdse.notetaker.customObj.NoteResponse;
+import lk.ijse.gdse.notetaker.customObj.UserErrorResponse;
 import lk.ijse.gdse.notetaker.customObj.UserResponse;
 import lk.ijse.gdse.notetaker.dao.NoteDao;
 import lk.ijse.gdse.notetaker.dao.UserDao;
@@ -28,7 +29,6 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserServiceIMPL implements UserService {
-
     @Autowired
     private final UserDao userDao;
     @Autowired

@@ -6,6 +6,8 @@ import lk.ijse.gdse.notetaker.customObj.NoteResponse;
 import lk.ijse.gdse.notetaker.dao.NoteDao;
 import lk.ijse.gdse.notetaker.dto.NoteDTO;
 import lk.ijse.gdse.notetaker.entity.NoteEntity;
+import lk.ijse.gdse.notetaker.exception.DataPersistFailedException;
+import lk.ijse.gdse.notetaker.exception.NoteNotFound;
 import lk.ijse.gdse.notetaker.util.AppUtil;
 import lk.ijse.gdse.notetaker.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
