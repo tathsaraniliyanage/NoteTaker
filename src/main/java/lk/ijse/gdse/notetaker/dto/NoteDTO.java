@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class NoteDto implements SuperDTO{
+public class NoteDTO implements SuperDTO{
     private String noteId;
     private String noteTitle;
     private String noteDesc;

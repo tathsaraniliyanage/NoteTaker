@@ -1,7 +1,8 @@
 package lk.ijse.gdse.notetaker.service;
 
-import lk.ijse.gdse.notetaker.dto.NoteDto;
-import org.springframework.stereotype.Service;
+import lk.ijse.gdse.notetaker.dto.NoteDTO;
+
+import java.util.List;
 
 /**
  * @author Prabodha Thathsarani
@@ -11,5 +12,9 @@ import org.springframework.stereotype.Service;
 
 
 public interface NoteService {
-    void saveNote(NoteDto noteDto);
+    void saveNote(NoteDTO noteDto);
+    void updateNote(String noteId,NoteDTO noteDTO);
+    void deleteNote(String noteId);
+    NoteResponse getSelectedNote(String noteId);
+    List<NoteDTO> getAllNotes();
 }
