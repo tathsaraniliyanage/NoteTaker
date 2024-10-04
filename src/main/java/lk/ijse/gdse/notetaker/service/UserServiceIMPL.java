@@ -10,6 +10,7 @@ import lk.ijse.gdse.notetaker.dto.NoteDTO;
 import lk.ijse.gdse.notetaker.dto.UserDTO;
 import lk.ijse.gdse.notetaker.entity.UserEntity;
 import lk.ijse.gdse.notetaker.exception.DataPersistFailedException;
+import lk.ijse.gdse.notetaker.exception.UserNotFoundException;
 import lk.ijse.gdse.notetaker.util.AppUtil;
 import lk.ijse.gdse.notetaker.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,12 +61,22 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public void deleteUser(String userId) {
-
+        Optional<UserEntity> selectedUserId = userDao.findById(userId);
+        if(!selectedUserId.isPresent()){
+            throw new UserNotFoundException("User not found");
+        }else {
+            userDao.deleteById(userId);
+        }
     }
 
     @Override
     public UserResponse getSelectedUser(String userId) {
-        return null;
+        if(userDao.existsById(userId)){
+            UserEntity userEntityByUserId = userDao.getUserEntityByUserId(userId);
+            return mapping.convertToUserDTO(userEntityByUserId);
+        }else {
+            return new UserErrorResponse(0, "User not found");
+        }
     }
 
     @Override
