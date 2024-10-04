@@ -38,9 +38,16 @@ public class UserController {
         // Handle profile pic
            try {
         //byte [] imageByteCollection = profilePic.getBytes();
-
+        String base64ProfilePic = AppUtil.toBase64ProfilePic(profilePic);
+        // build the user object
+        UserDTO buildUserDTO = new UserDTO();
+        buildUserDTO.setFirstName(firstName);
+        buildUserDTO.setLastName(lastName);
+        buildUserDTO.setEmail(email);
+        buildUserDTO.setPassword(password);
+        buildUserDTO.setProfilePic(base64ProfilePic);
         //send to the service layer
-
+        userService.saveUser(buildUserDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }catch (DataPersistFailedException e){
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
