@@ -1,5 +1,6 @@
 package lk.ijse.gdse.notetaker.service;
 
+import lk.ijse.gdse.notetaker.customObj.NoteResponse;
 import lk.ijse.gdse.notetaker.dto.NoteDTO;
 
 import java.util.List;
