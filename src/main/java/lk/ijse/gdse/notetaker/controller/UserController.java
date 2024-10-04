@@ -1,5 +1,6 @@
 package lk.ijse.gdse.notetaker.controller;
 
+import lk.ijse.gdse.notetaker.customObj.UserResponse;
 import lk.ijse.gdse.notetaker.dto.UserDTO;
 import lk.ijse.gdse.notetaker.exception.DataPersistFailedException;
 import lk.ijse.gdse.notetaker.service.UserServiceIMPL;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -108,4 +106,8 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserDTO getSelectedUser(@PathVariable ("id") String userId){
+        return userService.getSelectedUser(userId);
+    }
 }
