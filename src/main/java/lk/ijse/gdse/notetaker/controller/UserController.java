@@ -55,4 +55,35 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
+
+
+
+
+
+    @PatchMapping(value = "/{id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> updateUser(
+            @PathVariable ("id") String id,
+            @RequestPart("updateFirstName") String updateFirstName,
+            @RequestPart ("updateLastName") String updateLastName,
+            @RequestPart ("updateEmail") String updateEmail,
+            @RequestPart ("updatePassword") String updatePassword,
+            @RequestPart ("updateProfilePic") MultipartFile updateProfilePic
+    ){
+        try {
+            String updateBase64ProfilePic = AppUtil.toBase64ProfilePic(updateProfilePic);
+            var updateUser = new UserDTO();
+            updateUser.setUserId(id);
+            updateUser.setFirstName(updateFirstName);
+            updateUser.setLastName(updateLastName);
+            updateUser.setPassword(updatePassword);
+            updateUser.setEmail(updateEmail);
+            updateUser.setProfilePic(updateBase64ProfilePic);
+            userService.updateUser(updateUser);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (UserNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

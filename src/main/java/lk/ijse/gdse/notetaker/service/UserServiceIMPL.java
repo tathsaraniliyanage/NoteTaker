@@ -45,8 +45,18 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public void updateUser(UserDTO userDTO) {
-
+        Optional<UserEntity> tmpUser = userDao.findById(userDTO.getUserId());
+        if(!tmpUser.isPresent()){
+            throw new UserNotFoundException("User not found");
+        }else {
+            tmpUser.get().setFirstName(userDTO.getFirstName());
+            tmpUser.get().setLastName(userDTO.getLastName());
+            tmpUser.get().setEmail(userDTO.getEmail());
+            tmpUser.get().setPassword(userDTO.getPassword());
+            tmpUser.get().setProfilePic(userDTO.getProfilePic());
+        }
     }
+
 
     @Override
     public void deleteUser(String userId) {
